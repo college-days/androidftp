@@ -38,6 +38,17 @@ downloadIntent.putExtra("remotefilename", "test.jpg");
 this.startService(downloadIntent);
 ```
 
+## manifest
+
+```xml
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+<service android:name="ftp.FTPUploadService"></service>
+<service android:name="ftp.FTPDownloadService"></service>
+```
+
 ## common bugs
 
 * 默认路径是在```/storage/sdcard```(_/sdcard_)，如果下载的时候```localfilename```一样的话会有异常，所以最好在保存的filename中加有唯一标识(_时间戳之类的_)
