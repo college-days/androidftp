@@ -50,9 +50,9 @@ public class FTPDownloadService extends Service{
         ftpUtils = FTPUtils.getInstance();  
         boolean flag = ftpUtils.initFTPSetting(FTPConfig.FTPSERVER, FTPConfig.FTPPORT, FTPConfig.FTPUSERNAME, FTPConfig.FTPPASSWORD); 
         if (flag) {
-			System.out.println("ftpµÇÂ¼³É¹¦");
+			System.out.println("ftp login success");
 		}else{
-			System.out.println("ftpµÇÂ¼Ê§°Ü");
+			System.out.println("ftp login failed");
 		}
     }  
 	
