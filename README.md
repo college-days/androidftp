@@ -6,8 +6,16 @@
 
 ## quick start
 
-* should config ftpservername ftpport ftpusername ftppassword
+* should config ftpservername ftpport ftpusername ftppassword in ```FTPConfig.java```
 
+以163为例
+
+```java
+public static final String FTPSERVER= "10.214.55.163";
+public static final int FTPPORT = 21;
+public static final String FTPUSERNAME = "lin";
+public static final String FTPPASSWORD = "501";
+```
 
 ## simple useage in activity
 
