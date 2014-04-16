@@ -1,4 +1,4 @@
-只要使用ftp那个package就ok了
+只要使用ftp那个package就ok了，另一个包里是一个例子，可以直接运行，连得是163ftp
 
 ## requirements
 
