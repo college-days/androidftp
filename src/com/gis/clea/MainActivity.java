@@ -1,5 +1,7 @@
 package com.gis.clea;
 
+import junit.framework.Test;
+
 import com.example.com.gis.clea.R;
 
 import ftp.FTPDownloadService;
@@ -97,12 +99,17 @@ public class MainActivity extends ActionBarActivity implements OnClickListener{
 				Log.d("debug", "upload");
 				this.showTextView.setText("upload");
 				Intent uploadIntent = new Intent(this, FTPUploadService.class);
+				uploadIntent.putExtra("localfilename", "ftp/test.jpg");
+				uploadIntent.putExtra("remotefilename", "test.jpg");
 				this.startService(uploadIntent);
 				break;
 			case R.id.button_download:
 				Log.d("debug", "download");
 				this.showTextView.setText("download");
 				Intent downloadIntent = new Intent(this, FTPDownloadService.class);
+				downloadIntent.putExtra("localfilename", "333.jpg");
+				downloadIntent.putExtra("localfilepath", "ftp/");
+				downloadIntent.putExtra("remotefilename", "test.jpg");
 				this.startService(downloadIntent);
 				break;
 			case R.id.http_download:

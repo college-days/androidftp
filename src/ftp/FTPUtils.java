@@ -122,7 +122,7 @@ public class FTPUtils {
 	        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 	        
 	        //文件上传吧～
-	        FileInputStream fileInputStream = new FileInputStream(Environment.getExternalStorageDirectory() + FilePath);
+	        FileInputStream fileInputStream = new FileInputStream(Environment.getExternalStorageDirectory()+ "/" + FilePath);
 	        ftpClient.storeFile(FileName, fileInputStream);
 	        
 	        //关闭文件流
@@ -146,7 +146,7 @@ public class FTPUtils {
 	 * @param FileName   远程FTP服务器上的那个文件的名字
 	 * @return   true为成功，false为失败
 	 */
-	public boolean downLoadFile(String FilePath, String FileName) {
+	public boolean downLoadFile(String LocalFilePath, String LocalFileName, String FileName) {
 		
 		if (!ftpClient.isConnected())
 		{
@@ -162,7 +162,7 @@ public class FTPUtils {
 			ftpClient.changeWorkingDirectory("/data");
 			InputStream inputStream = ftpClient.retrieveFileStream(FileName);
 			FileProcessor fileProcessor = new FileProcessor();
-	        fileProcessor.writeFile2SDcardFromInputStream(FilePath, FileName, inputStream);
+	        fileProcessor.writeFile2SDcardFromInputStream(LocalFilePath, LocalFileName, inputStream);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

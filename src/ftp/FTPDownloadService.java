@@ -16,6 +16,9 @@ public class FTPDownloadService extends Service{
 	
 	//FTPπ§æﬂ¿‡  
     private FTPUtils ftpUtils = null;
+    String localFileName = "";
+    String localFilePath = "";
+    String remoteFileName = "";
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -33,6 +36,10 @@ public class FTPDownloadService extends Service{
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
+		this.localFileName = intent.getStringExtra("localfilename");
+		this.localFilePath = intent.getStringExtra("localfilepath");
+		this.remoteFileName = intent.getStringExtra("remotefilename");
+		System.out.println(localFilePath+localFileName);
 		DownloadFileThread downloadFileThread = new DownloadFileThread();
 		new Thread(downloadFileThread).start();
 		return super.onStartCommand(intent, flags, startId);
@@ -54,9 +61,7 @@ public class FTPDownloadService extends Service{
 		@Override
 		public void run() {     
 			InitFTPServerSetting();
-			String filePath = "ftp/";
-			String fileName = "test.jpg";
-			ftpUtils.downLoadFile(filePath, fileName);
+			ftpUtils.downLoadFile(localFilePath, localFileName, remoteFileName);
 			System.out.println("download finish");
 		}
 		

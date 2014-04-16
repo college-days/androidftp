@@ -9,6 +9,8 @@ import android.os.IBinder;
 public class FTPUploadService extends Service{
 	//FTPπ§æﬂ¿‡  
     private FTPUtils ftpUtils = null;
+    String localFileName = "";
+    String remoteFileName = "";
 	
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -26,6 +28,8 @@ public class FTPUploadService extends Service{
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		// TODO Auto-generated method stub
+		this.localFileName = intent.getStringExtra("localfilename");
+		this.remoteFileName = intent.getStringExtra("remotefilename");
 		UploadFileThread uploadFileThread = new UploadFileThread();
 		new Thread(uploadFileThread).start();
 		return super.onStartCommand(intent, flags, startId);
@@ -48,8 +52,7 @@ public class FTPUploadService extends Service{
 		public void run() {
 			// TODO Auto-generated method stub
 			InitFTPServerSetting();
-			String filePath = "/ftp/test.jpg";
-			ftpUtils.uploadFile(filePath, "test.jpg");
+			ftpUtils.uploadFile(localFileName, remoteFileName);
 			System.out.println("ftp upload finish");
 		}
 		
